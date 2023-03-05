@@ -1,0 +1,14 @@
+---
+- hosts: all
+
+  tasks:
+    - name: Upload key for personal system
+      authorized_key:
+        user: "{{remote_username}}"
+        state: present
+        key: "{{main_public_ssh}}"
+    - name: Upload dev-vm key
+      authorized_key:
+        user: "{{remote_username}}"
+        state: present
+        key: "{{dev_vm_public_ssh}}"

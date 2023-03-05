@@ -1,0 +1,23 @@
+---
+- hosts: new
+
+  tasks:
+    - name: Upload key for personal system
+      authorized_key:
+        user: "{{remote_username}}"
+        state: present
+        key: "{{main_public_ssh}}"
+    - name: Upload dev-vm key
+      authorized_key:
+        user: "{{remote_username}}"
+        state: present
+        key: "{{dev_vm_public_ssh}}"
+    - name: Disable SSH password auth
+      lineinfile: dest=/etc/ssh/sshd_config
+        regexp="^PasswordAuthentication"
+        line="PasswordAuthentication no"
+        state=present
+    - name: Restart sshd
+      service:
+        name: sshd
+        state: restarted

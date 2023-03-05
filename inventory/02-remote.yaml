@@ -1,0 +1,16 @@
+all:
+  children:
+    aws:
+      hosts:
+        aws.example.com:
+    azure:
+      hosts:
+        azure.example.com:
+    gcp:
+      hosts:
+        gcp.example.com:
+    databases:
+      aws:
+      azure:
+    webservers:
+      gcp:
